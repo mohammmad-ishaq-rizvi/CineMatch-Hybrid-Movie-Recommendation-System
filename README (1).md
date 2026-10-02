@@ -119,4 +119,4 @@ Code is released under the [MIT License](LICENSE). The dataset and posters belon
 
 ## Author
 
-**Mohammad Ishaq Rizvi**: [GitHub](https://github.com/mohammmad-ishaq-rizvi) · [LinkedIn](https://www.linkedin.com/in/mohammad-ishaq-rizvi/)
+**Mohammad Ishaq Rizvi**: [GitHub](https://github.com/mohammmad-ishaq-rizvi) 
