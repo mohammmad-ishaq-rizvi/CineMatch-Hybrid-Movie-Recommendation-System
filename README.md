@@ -7,12 +7,12 @@
 
 CineMatch recommends movies from the **TMDB 5000** dataset. Pick one film, or blend several favourites into a taste profile, and get relevant, varied, well-rated suggestions, each with a short reason.
 
-### 👉 [Try the live app](YOUR-STREAMLIT-APP-URL)
-*If the app is asleep, click "Yes, get this app back up!" and wait about 30 seconds.*
 
-![CineMatch screenshot](screenshots/app.png)
+### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
 
----
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/a9aa56bb-1092-44b9-be47-015b7e530c86" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/18cd1f1c-9580-4c70-851a-05ad97a4d22e" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/048651cd-379c-4558-81bf-6872e108acf9" />
 
 ## What it does
 
@@ -113,7 +113,9 @@ Python · pandas · NumPy · SciPy · scikit-learn · Streamlit · joblib · Req
 
 ## Data and credits
 
-Data from the [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata), originally from [TMDB](https://www.themoviedb.org/). *This product uses the TMDB API but is not endorsed or certified by TMDB.*
+
+- Movie data: [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata), originally from [The Movie Database (TMDB)](https://www.themoviedb.org/).
+- *This product uses the TMDB API but is not endorsed or certified by TMDB.*
 
 ## License
 
@@ -121,4 +123,4 @@ Code is released under the [MIT License](LICENSE). The dataset and posters belon
 
 ## Author
 
-**Mohammad Ishaq Rizvi**: [GitHub](https://github.com/mohammmad-ishaq-rizvi) · [LinkedIn](https://www.linkedin.com/in/mohammad-ishaq-rizvi/)
+**Mohammad Ishaq Rizvi**: [GitHub](https://github.com/mohammmad-ishaq-rizvi) 
