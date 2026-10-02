@@ -7,14 +7,13 @@
 
 **CineMatch** recommends movies from the TMDB 5000 dataset. Pick one film, or blend several favourites into a taste profile, and it returns varied, well-rated suggestions with a short reason for each one.
 
-### 👉 [Try the live app](YOUR-STREAMLIT-APP-URL)
+### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
 
-> If the app is asleep, click **"Yes, get this app back up!"** and wait about 30 seconds.
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/a9aa56bb-1092-44b9-be47-015b7e530c86" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/ea6c9aec-8882-4ad3-abb4-5d6936c7782c" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/18cd1f1c-9580-4c70-851a-05ad97a4d22e" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/048651cd-379c-4558-81bf-6872e108acf9" />
 
-![CineMatch screenshot](screenshots/app.png)
-<!-- Add 1-2 screenshots to a screenshots/ folder, or record a short GIF of the app. -->
-
----
 
 ## Features
 
