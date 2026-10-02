@@ -9,8 +9,6 @@ CineMatch recommends movies from the **TMDB 5000** dataset. Pick one film, or bl
 
 ### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
 
-### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
-
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/a9aa56bb-1092-44b9-be47-015b7e530c86" />
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/18cd1f1c-9580-4c70-851a-05ad97a4d22e" />
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/048651cd-379c-4558-81bf-6872e108acf9" />
