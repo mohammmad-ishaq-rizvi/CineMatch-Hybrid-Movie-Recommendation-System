@@ -1,0 +1,5 @@
+.venv/
+.idea/
+__pycache__/
+.streamlit/secrets.toml
+hybrid_movie_recommender.joblib
