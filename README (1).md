@@ -7,12 +7,13 @@
 
 CineMatch recommends movies from the **TMDB 5000** dataset. Pick one film, or blend several favourites into a taste profile, and get relevant, varied, well-rated suggestions, each with a short reason.
 
-### 👉 [Try the live app](YOUR-STREAMLIT-APP-URL)
-*If the app is asleep, click "Yes, get this app back up!" and wait about 30 seconds.*
+### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
 
-![CineMatch screenshot](screenshots/app.png)
+### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
 
----
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/a9aa56bb-1092-44b9-be47-015b7e530c86" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/18cd1f1c-9580-4c70-851a-05ad97a4d22e" />
+<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/048651cd-379c-4558-81bf-6872e108acf9" />
 
 ## What it does
 
@@ -107,9 +108,7 @@ Python · pandas · NumPy · SciPy · scikit-learn · Streamlit · joblib · Req
 
 ## Limitations and next steps
 
-- **No collaborative filtering:** the dataset has no per-user ratings, so recommendations come from movie content, not from similar users.
 - **Static catalogue:** only the 4,803 films in the dataset, with no recent releases.
-- **No offline evaluation yet:** next steps are precision@k against a baseline, sentence-embedding features for plots, and moving the recommender into its own tested module.
 
 ## Data and credits
 
