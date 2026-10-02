@@ -33,7 +33,9 @@ CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap');
 :root{--bg:#15101c;--surface:#201829;--line:rgba(255,235,210,.09);--ink:#f4ead9;--mute:#a99db3;--red:#d13b52;--brass:#e0a93f;}
 .stApp{background:radial-gradient(1200px 500px at 50% -10%,#3a1626 0%,var(--bg) 60%);color:var(--ink);font-family:'DM Sans',sans-serif}
-#MainMenu,footer,header[data-testid="stHeader"]{visibility:hidden}
+#MainMenu,footer{visibility:hidden}
+header[data-testid="stHeader"]{background:transparent}
+[data-testid="stSidebarCollapsedControl"],[data-testid="collapsedControl"]{visibility:visible!important}
 .block-container{padding-top:1.4rem;max-width:1250px}
 section[data-testid="stSidebar"]{background:#110d17;border-right:1px solid var(--line)}
 h1,h2,h3{font-family:'Fraunces',serif!important;color:var(--ink)!important}
