@@ -110,7 +110,8 @@ Python · pandas · NumPy · SciPy · scikit-learn · Streamlit · joblib · Req
 
 ## Data and credits
 
-Data from the [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata), originally from [TMDB](https://www.themoviedb.org/). *This product uses the TMDB API but is not endorsed or certified by TMDB.*
+- Movie data: [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata), originally from [The Movie Database (TMDB)](https://www.themoviedb.org/).
+- *This product uses the TMDB API but is not endorsed or certified by TMDB.*
 
 ## License
 
