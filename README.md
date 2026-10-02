@@ -14,90 +14,89 @@
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/048651cd-379c-4558-81bf-6872e108acf9" />
 
 
-## Features
+What it does
+Mode	Description
+Because you watched	Choose a movie and get similar ones, with a "why" line (shared genres, cast, director).
+Build my taste	Choose up to 8 favourites; they are blended into one taste profile.
+Top rated	Browse the best films by genre, release year and minimum votes.
 
-- **Because you watched**: Pick a movie and get similar ones, each with a "why" line (shared genres, cast, director).
-- **Build my taste**: Choose up to 24 favourites. CineMatch averages them into one taste profile and recommends from that.
-- **Top rated**: Browse the best films by genre, release year and minimum votes.
-- **Live controls**: Adjust the number of results, variety, how much to favour well-rated films, and the release-year range.
-- **Posters**: Fetched from the TMDB API when a key is set, with a keyless Wikipedia fallback and a placeholder if both fail.
+Sidebar controls: number of results, variety (diversity), how much to favour well-rated films, and release-year range. Posters come from the TMDB API (optional key) with a Wikipedia fallback.
 
-## How it works
+How it works
 
-CineMatch is a hybrid of three ideas: content-based filtering, a quality prior, and diversity re-ranking.
+CineMatch is a hybrid of content-based filtering, a quality prior and diversity re-ranking.
 
-**1. Content features (TF-IDF).** Each movie becomes a vector built from four separately vectorised blocks, each with its own weight:
+1. Content similarity (TF-IDF). Each movie is turned into a vector from four separately vectorised blocks:
 
-| Block | Source | Features | Weight |
-|---|---|---|---|
-| Plot | overview + tagline (1-2 word n-grams) | 19,000 | 1.00 |
-| Genres | prefixed tokens, e.g. `genre_science_fiction` | 20 | 1.40 |
-| Keywords | prefixed tokens, e.g. `keyword_dream` | 9,804 | 1.15 |
-| People | top 5 cast, directors, writers | 16,546 | 0.75 |
+Block	Source	Features	Weight
+Plot	overview + tagline, unigrams and bigrams	19,000	1.00
+Genres	prefixed tokens, e.g. genre_science_fiction	20	1.40
+Keywords	prefixed tokens, e.g. keyword_dream	9,804	1.15
+People	top-5 cast, directors, writers	16,546	0.75
 
-The blocks are stacked into one sparse matrix of **4,803 movies × 45,370 features** (about 0.11% dense) and L2-normalised, so a dot product is cosine similarity. Prefixing tokens stops a name like a director's from being confused with a plot word.
+The blocks are stacked into a sparse 4,803 × 45,370 matrix (about 0.11% dense) and L2-normalised, so a dot product equals cosine similarity. Token prefixes keep a director's name from being mistaken for a plot word.
 
-**2. Quality prior.** Raw ratings are unreliable when a film has few votes, so a **Bayesian average** pulls low-vote films toward the dataset mean. It is combined with log-scaled popularity (75% rating, 25% popularity). The final score is:
+2. Quality prior. A Bayesian average pulls ratings of films with few votes toward the global mean, and is blended with log-scaled popularity (75% rating, 25% popularity). Final score:
 
-```
-score = (1 - quality_weight) * content_similarity + quality_weight * quality
-```
+score = (1 - quality_weight) * content_similarity + quality_weight * quality     # default quality_weight = 0.15
 
-with a default `quality_weight` of 0.15, so similarity stays the main signal.
+Similarity stays the main signal; quality only breaks ties in favour of reliable films.
 
-**3. Diversity (MMR).** The top 200 candidates are re-ranked with **Maximal Marginal Relevance**, which penalises films too similar to ones already chosen. This avoids a list of near-identical sequels.
+3. Diversity (MMR). The top 200 candidates are re-ranked with Maximal Marginal Relevance, which penalises films that are too similar to ones already chosen, so you don't get ten near-identical sequels.
 
-**Multi-movie taste profiles** are the mean of the selected movies' vectors, which gives simple personalisation without needing any user history.
+4. Taste profiles. For several favourites, their vectors are averaged into one profile, which gives simple personalisation with no user history.
 
-The full walkthrough, with the reasoning behind each choice, is in the notebook: [`hybrid_movie_recommender_explained.ipynb`](hybrid_movie_recommender_explained.ipynb).
+The notebook
 
-## Tech stack
+hybrid_movie_recommender_explained.ipynb builds the whole system step by step:
 
-Python · pandas · NumPy · SciPy (sparse matrices) · scikit-learn (TF-IDF) · Streamlit · joblib · Requests
+Stage	What happens
+Data loading	Merge movies (4,803 × 20) with credits using a validated one-to-one join on TMDB ID.
+Validation	Assertions for duplicate IDs, missing credits and score ranges; JSON-parse failures and missing years are counted, not hidden.
+Feature extraction	Parse nested JSON into genres, keywords, cast, directors and writers.
+Tokenisation	Lower-case, underscore-joined, prefixed tokens per feature type.
+Vectorisation	Four weighted TF-IDF blocks, stacked and L2-normalised.
+Rating	Bayesian-average quality score plus popularity.
+Pipeline	Title lookup (handles remakes and suggests close matches), recommend(), MMR re-ranking and explanations. Each query scores one movie against all others, so no all-pairs similarity matrix is stored.
+Personalisation	recommend_from_likes() builds a taste profile from several titles.
+Persistence	Index, scores and config saved with joblib.
 
-## Run it locally
+Sample output from the notebook
 
-```bash
+The Avengers → Avengers: Age of Ultron, Captain America: The Winter Soldier, Ant-Man, Captain America: Civil War
+The Dark Knight + Inception + Interstellar → The Dark Knight Rises, Mad Max: Fury Road, Guardians of the Galaxy, The Martian
+Run it locally
+bash
 git clone https://github.com/mohammmad-ishaq-rizvi/CineMatch-Hybrid-Movie-Recommendation-System.git
 cd CineMatch-Hybrid-Movie-Recommendation-System
 pip install -r requirements.txt
 streamlit run app.py
-```
 
-On first run the app builds its index from the two CSV files and caches it as `hybrid_movie_recommender.joblib` (this file is git-ignored). Later runs load the cache.
+On first run the app builds its index from the two CSVs and caches it as hybrid_movie_recommender.joblib (git-ignored); later runs load the cache.
 
-**Optional: TMDB posters.** Get a free API key from [themoviedb.org](https://www.themoviedb.org/settings/api) and either enter it as an environment variable:
+Optional: posters via TMDB. Get a free key at themoviedb.org, then set TMDB_API_KEY as an environment variable, in .streamlit/secrets.toml, or in Streamlit Cloud's Secrets:
 
-```bash
-export TMDB_API_KEY="your_key"     # Windows PowerShell: $env:TMDB_API_KEY="your_key"
-```
-
-or add it to `.streamlit/secrets.toml` (locally) or the app's **Secrets** settings (Streamlit Cloud):
-
-```toml
+toml
 TMDB_API_KEY = "your_key"
-```
-
-Without a key, posters come from Wikipedia where available.
-
-## Project structure
-
-```
+Project structure
 ├── app.py                                    # Streamlit app + recommender logic
 ├── hybrid_movie_recommender_explained.ipynb  # Step-by-step build and explanation
-├── tmdb_5000_movies.csv                      # Movie metadata
-├── tmdb_5000_credits.csv                     # Cast and crew
+├── tmdb_5000_movies.csv
+├── tmdb_5000_credits.csv
 ├── requirements.txt
 ├── LICENSE
 └── README.md
-```
+Tech stack
 
-## Limitations and future work
+Python · pandas · NumPy · SciPy · scikit-learn · Streamlit · joblib · Requests
 
-- **No collaborative filtering.** The dataset has no per-user ratings, so recommendations are based on movie content, not on what similar users liked.
-- **Static catalogue.** It covers the 4,803 films in the dataset, so there are no recent releases.
-- **No offline evaluation yet.** Next steps: measure quality with a held-out metric (for example precision@k against genre or user data) and compare against a plain TF-IDF baseline.
-- **Ideas:** sentence-embedding features for the plot text, a MovieLens-based collaborative layer, moving the recommender into its own module with unit tests.
+Limitations and next steps
+No collaborative filtering: the dataset has no per-user ratings, so recommendations come from movie content, not from similar users.
+Static catalogue: only the 4,803 films in the dataset, with no recent releases.
+No offline evaluation yet: next steps are precision@k against a baseline, sentence-embedding features for plots, and moving the recommender into its own tested module.
+Data and credits
+
+Data from the TMDB 5000 Movie Dataset, originally from TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 ## Data and credits
 
