@@ -107,9 +107,7 @@ Python · pandas · NumPy · SciPy · scikit-learn · Streamlit · joblib · Req
 
 ## Limitations and next steps
 
-- **No collaborative filtering:** the dataset has no per-user ratings, so recommendations come from movie content, not from similar users.
 - **Static catalogue:** only the 4,803 films in the dataset, with no recent releases.
-- **No offline evaluation yet:** next steps are precision@k against a baseline, sentence-embedding features for plots, and moving the recommender into its own tested module.
 
 ## Data and credits
 
