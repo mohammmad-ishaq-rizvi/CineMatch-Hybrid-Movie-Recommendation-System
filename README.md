@@ -10,18 +10,17 @@
 ### 👉 [Try the live app](https://cinematch-movie-recommendation-system.streamlit.app/)
 
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/a9aa56bb-1092-44b9-be47-015b7e530c86" />
-<img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/ea6c9aec-8882-4ad3-abb4-5d6936c7782c" />
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/18cd1f1c-9580-4c70-851a-05ad97a4d22e" />
 <img width="1600" height="900" alt="image" src="https://github.com/user-attachments/assets/048651cd-379c-4558-81bf-6872e108acf9" />
 
 
 ## Features
 
-- **Because you watched**: pick a movie and get similar ones, each with a "why" line (shared genres, cast, director).
-- **Build my taste**: choose up to 8 favourites; CineMatch averages them into one taste profile and recommends from that.
-- **Top rated**: browse the best films by genre, release year and minimum votes.
-- **Live controls**: adjust the number of results, variety, how much to favour well-rated films, and the release-year range.
-- **Posters**: fetched from the TMDB API when a key is set, with a keyless Wikipedia fallback and a placeholder if both fail.
+- **Because you watched**: Pick a movie and get similar ones, each with a "why" line (shared genres, cast, director).
+- **Build my taste**: Choose up to 24 favourites. CineMatch averages them into one taste profile and recommends from that.
+- **Top rated**: Browse the best films by genre, release year and minimum votes.
+- **Live controls**: Adjust the number of results, variety, how much to favour well-rated films, and the release-year range.
+- **Posters**: Fetched from the TMDB API when a key is set, with a keyless Wikipedia fallback and a placeholder if both fail.
 
 ## How it works
 
